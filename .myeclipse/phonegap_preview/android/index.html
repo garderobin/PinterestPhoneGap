@@ -1,0 +1,361 @@
+<!DOCTYPE>
+<html>
+  <head>
+    <title>nyupinterest</title>
+	
+	<link href="css/bundle-desktop-1_a3436a78.css" rel="stylesheet" type="text/css">
+	<link href="css/bundle-desktop-2_994eb744.css" rel="stylesheet" type="text/css"> 
+	<link href="css/bundle-desktop-2_5c6c6f50.css" rel="stylesheet" type="text/css"> 
+	<link href="css/bundle-desktop-2_442c9884.css" rel="stylesheet" type="text/css">
+    <link href="css/bundle-desktop-main_db38bc94.css" rel="stylesheet" type="text/css">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/bootstrap-responsive-2.3.2.css" rel="stylesheet" type="text/css"> 
+	<link rel="stylesheet" type="text/css" href="css/style4.css" />
+	<link href="css/dbcommon.css" rel="stylesheet" type="text/css">
+   	<script src="js/jquery.min.js"></script>
+   	<script src="js/bootstrap.js"></script>
+    <script src="js/imagesUploaded.min.js"></script>
+    <script src="js/jquery.isotope.min.js"></script>
+    
+	
+  </head>  
+  <body>
+<div data-role="page" id="welcomePage">
+<script type="text/javascript">
+$(function(){
+	var $url_base = "http://10.0.2.2:8080/DBPJ/";
+
+	$("#loginForm").ajaxForm({
+		url: $url_base + "login",
+		type: 'POST',
+		dataType: 'json',
+		data:{username:'test', password:'test'},
+		success: function() {
+			alert("Add follow success!");//TODO
+			alert(data.username);
+		},
+		error: function(XMLHttpRequest, textStatus, errorThrown) {
+			alert("addFollow error!");
+		},
+		input: function(data, textStatus) {
+			alert("errorcode:" + data.idfollow);
+		},
+	});  
+})
+	
+</script>
+			<header>
+				<h1>Pinterest by Jasmine</h1>
+				
+			</header>
+			<a onclick="test()">Try!!!</a>
+           <p class="codrops-demos">
+           	   <form action="http://10.0.2.2:8080/DBPJ/login" method="post" id="loginForm">
+			  		Username<input type="text" name="username" />
+  					Password<input type="text" name="password" />
+  					
+		  			<input class="submit btn btn-primary" type="submit" value=" Log in " />
+		  			<a href="#registerPage" data-toggle="modal"><input class="submit btn btn-primary" type="button" value=" Sign up " /></a>
+				</form>
+            </p>
+ </div> <!-- end welcomePage-->
+ <div data-role="page" id="indexPage">
+  	<div data-role="header">
+    <div class=" Header Module" data-component-type="" id="header_module" style="background-color:white">
+    	<div class="headerBackground" id="headerBackground" style="background-color:white">
+    	</div>
+    	<div class="headerContainer centeredWithinWrapper" id="headerContainer" style="background-color:white">
+    		<div class="rightHeaderContent" style="background-color:white">
+    			<div class="Module RightHeader" data-component-type=""> 
+    				<button class="Button DropdownButton Module NotificationsConversationsButton btn notifs regular merged rounded" data-element-type=""
+    					type="button" onclick="location.href='friendRequest.jsp'">
+    					<!-- 
+                        <em></em> -->
+    					<!--<span class="accessibilityText">Notifications</span>-->
+    					<!--<span class="buttonBadge"></span>-->
+    					<!-- TODO a badge with the account of notifications. -->
+                        <span class="glyphicon glyphicon-bell" style="font-size: 22px; color:gray" ></span>
+    				</button>
+    				<button class="Module UserNavigateButton merged" data-element-type=""
+    					type="button" onclick="location.href='userAdminPage.jsp'">
+    					<div class="usernameLink">
+    						<div class="Image Module profileImage">
+    							<div class="heightContainer">
+    								<!-- 			 
+    								<img src="https://s-passets-cache-ak0.pinimg.com/images/user/default_#0.png"></img>
+    								 -->
+    								<span class="glyphicon glyphicon-pushpin" style="font-size: 22px;color:gray"></span>
+    							</div>
+    						</div>
+    					</div>
+  						<span class="profileName" id="headerProfileName"><s:property value="#session.username"></s:property></span> <!-- To be modified to the real user name! -->
+    				</button>
+    			</div>
+    		</div>
+    		<div class="leftHeaderContent" style="background-color:white">
+            	<a class="Button Module NavigateButton btn logoHeader leftRounded rounded" 
+                	data-element-type="" data-force-refresh="1" href="index.jsp" type="button">            					
+					<!--<em></em>-->
+                    <span class="accessibilityText">Home</span>                    
+                    <span class="glyphicon glyphicon-search" style="font-size:22px; color:gray"></span>                    
+                </a>
+                <!-- <div class="btn-group">  -->
+                <button class="btn Button DropdownButton Module btn categoriesHeader dropdown-toogle" 
+                	data-element-type=""  data-toggle="modal" data-target="#sortListDiv" type="button"> <!-- href TODO -->
+        			<em></em>
+					<span class="accessibilityText">Categories</span>
+                    <span class="glyphicon  glyphicon-menu-hamburger" 
+                    	style="font-size:18px;color:gray;"></span>
+                    <span class="caret" style="color:gray;"></span>                                      
+                </button> 
+                 
+                <!-- <ul class="dropdown-menu" role="menu"> Problem! not function now.
+                	<li><a>About</a></li>
+                	<li><a>Help</a></li>
+                </ul>  -->  
+                <!-- </div>         --> 
+                <div class="Module SearchForm buttonOnRight guided tokenized" data-component-type="">
+                	<form action="search.jsp" id="searchForm" method="POST" name="search">
+                    	<div class="Module TypeaheadField buttonOnRight guided">
+                        	<div class="tokenizedInputWrapper">
+                            	<div class="Module TokenizedInput guided">
+                                	<div class="scrollWrapper">
+                                    	<!-- <ul class="tokensWrapper">
+        									<li class="tokenizedItem inputToken">
+            									<input autocomplete="off" class="Input Module field" data-element-type="227" 
+                                                	name="q" placeholder="Search for Pins, Pinners or boards">
+    										</li>
+    									</ul> -->
+    									<ul class="tokensWrapper">
+        									<li class="tokenizedItem inputToken">
+    									<input type="text" class="Input Module field" style="width:100%" placeholder="Search for Pins, Pinners or boards" name="keyword" id="keyword">
+                                    	<!--  <button type="submit">search</button> -->
+                                    	</li>
+                                    	</ul>
+                                    </div>
+                                    <a class="removeAll">
+                                    	<em></em>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="Module Typeahead buttonOnRight guided">
+                            	<ul class="results" data-component-type=""></ul>
+                            </div>
+                        </div>
+                    </form>
+                </div>                    
+    		</div>
+    	</div>
+    </div>
+    <div id="sortListDiv" class="modal fade" role="dialog">
+							<div class="modal-dialog">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							        <h4 class="modal-title">Sort pins by:</h4>
+							      </div>
+							      <div class="modal-body">
+							        <ul id="sortList">
+							        	<li><a href="index.jsp">1. Fresh Pin Mode (Newest published pins first).</a></li>
+										
+										<li><a href="indexSortedByFollow.jsp">2. Recommend mode (Pins from followed boards and friends first).</a></li>
+										<li>
+											<a href="indexSortedByHot.jsp">3. Hot mode (Pins repined or liked more often show first).</a>
+										</li>
+										<li>
+											<a onclick="pictureFirst()" type="button">4. Fresh Picture Mode (Pictures uploaded recently show first).</a>
+										</li>
+									</ul>
+							      </div>
+							      <div class="modal-footer">
+							        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+							      </div>
+							    </div><!-- /.modal-content -->
+							  </div><!-- /.modal-dialog -->
+							
+						</div>
+ </div><!-- end header for indexPage -->
+	<input type="hidden" name="lastPinid" id="lastPinid"/>
+	<div class="appContent" data-role="content">
+		<div class="mainContainer" style="background-color:#e9e9e9">
+			<div class="Module Nags centeredWithinWrapper" style="height:54px"></div>
+			<div class="HomePage Module" style="min-height:624px">
+				<div class="AuthHomePage Module">
+					<div class="HeroBasicWrapper Module"></div>
+					<div class="Grid Module hasFooter" style="background-color:#e9e9e9">
+						<div class="GridItems Module centeredWithinWrapper padItems variableHeightLayout" id="masonryContainer">
+							<!-- The height is not static. It seems to related to the screen condition. -->
+							<!-- <jsp:include page="./pinSummary.jsp" /> -->
+						</div>
+						<div class="GridFooter Module centeredWithinWrapper showGridLoading" style="display:block">
+							<div class="gridError" style="display:none">
+								<button class="Button btn rounded large">
+									<span>Whoops! Something went wrong</span>
+									"Try again."
+								</button>
+							</div>
+							<div class="gridLoading">
+								<span class="gridFooterLogoIcon"></span>
+								<span class="gridFooterSpinner"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="appendedContainer"></div>
+			<div class="Module Toasts"></div>
+		</div>
+	</div><!-- end content for indexPage -->
+  <div data-role="footer" data-position="fixed" >   
+	<div class="footerButtonsWrapper navbar navbar-fixed-bottom" style="position:fixed;">			
+		<div class="FooterButtons Module visible navbar-right" style="padding-right:5%; padding-bottom:5%">
+			<div class="buttonInoutWrapper addButtonWrapper">
+				<button class="Button DropdownButton Module addPinFooter footerIcon borderless" 
+					id="addPinMenuButton" data-element-type="18" type="button">
+					<!-- <em></em><span class="accessibilityText">[object Object]</span> -->
+					<span class="glyphicon glyphicon-plus" style="font-size:22px; color:gray"></span>
+				</button> 				
+			</div>			     		
+    	</div>
+	</div> 	
+	</div>
+</div> <!-- end page indexPage -->
+<div data-role="page" class="navbar navbar-fixed-bottom slide-hidden" id="addPinMenuContent">    
+    <div class="navbar-right Module Dropdown PositionModule positionModuleFixed positionFixed defaultCaret active positionModuleElement positionRight slide-in">
+        <span class="positionModuleCaret" style="top:173px;"></span>
+        <div class="AddPin Module isDropdown" data-component-type="">
+        	<button type="button" class="Button Module ShowModalButton borderless hasText pinUpload addPinDropdown" 
+        		onclick="location.href='#addPinPage'">
+        		<em class="glyphicon glyphicon-cloud-upload" style="color:gray;font-size:20px"></em>
+        		<!-- <em></em>  -->
+            	<span class="buttonText">Upload a Pin</span>
+            </button>            
+            <button type="button" class="Button Module ShowModalButton borderless hasText pinUpload addPinDropdown" 
+				onclick="location.href='#createBoardPage'">
+            	<em class="glyphicon glyphicon-blackboard" style="color:gray;font-size:20px"></em>
+            	<span class="buttonText">Create a board</span>
+            </button>
+       </div> 
+    </div>
+</div>  <!-- end addPinMenuContent -->
+    
+    <div data-role="page" id="addPinPage">	   		
+		<form class="standardForm" method="post" action="addPin">
+				<input type="hidden" id="bid" name="bid"/>	
+				<input type="hidden" id="picnum" name="picnum"/>
+    			<h1 class="pinFormHeader">Upload A Pin</h1>
+    			<input id="file_upload" type="file" name="file"
+				style="position: absolute; right:0px; top: 0px; font-family: Arial; margin: 0px; padding: 0px; cursor: pointer; opacity: 0;
+				max-height:32px;min-width:150px; border-top-left-radius:3px;border-bottom-right-radius:3px"/>
+    			<div class="uploaderProgress" id="tip-queue"></div>
+    			<div class="Module PinPreview" 
+    				style="float:right;margin-right:20px;overflow-x:hidden; overflow-y:hidden;position:relative;
+    				margin-bottom:0px;margin-left:0px;margin-top:15px;max-width:180px;max-height:250px;
+    				border:2px gray solid;background-color:#eee">
+            		<img class="pinPreviewImg" id="pinPreviewImg">
+            	</div>
+				<ul>
+					<li>
+            			<h3 style="width:130px"><label>Board</label></h3>            			
+            			<div class="dropdown" >
+                			<button class=" BoardPickerDropdownButton Button DropdownButton Module btn primary rounded dropdown-toggle" type="button"
+                			 id="addPinPickBoardButton" data-toggle="dropdown" aria-expanded="true">
+								<div class="BoardLabel Module compact">
+									<span class="nameAndIcons">
+    									<div class="name" id="selectSpan">Select a board</div>
+									</span>
+								</div>
+							</button>
+							<ul class="dropdown-menu selectBoard" role="menu" aria-labelledby="addPinPickBoardButton" id="selectBoard" style="position:relative;float:left;width:318px"></ul>
+            			</div>
+       				</li>
+       				<li>
+            			<h3 style="width:130px"><label for="pinFormDescription">Description</label></h3>
+            			<div>
+                			<div class="Field Module TextField">
+								<textarea id="pinFormDescription" name="note" class="content " 
+								placeholder="What's this Pin all about?" style="float:right"></textarea>
+							</div>
+            			</div>
+       	 			</li>
+					<li>
+                		<h3 style="width:130px"><label for="pinFormLink">Source</label></h3>
+                		<div>
+                    		<input type="url" name="sourceUrl" id="sourceUrl"  style="float:right;">
+                		</div>
+            		</li>
+				</ul>
+				<div class="formFooter" id="formFooter">
+					<div class="socialShareWrapper"></div>
+					<div class="formFooterButtons">
+						<button class=" Button Module btn cancelButton hasText rounded" type="button">
+							<span class="buttonText">Close</span>
+						</button>
+						<button class="Button Module btn primary repinSmall pinIt rounded" type="submit" >
+							<em class="glyphicon glyphicon-pushpin"></em>
+							<span class="buttonText">Pin it</span>
+						</button>
+        			</div>
+    			</div>
+		</form>
+		<script type="text/javascript">
+  		$(function(){
+  		 $('#file_upload').uploadifive({
+  			 //'auto' : false,   //取消自动上传 
+  	        'uploadScript' : 'fileUploadAction.action',  //处理上传文件Action路径 
+  	        'fileObjName' : 'file',        //文件对象
+  	        'buttonClass'  : 'rounded Button Module btn hasText large leftRounded primary', 
+	  	    'buttonText'   : 'Choose Image',   //按钮显示文字 
+	  	    'queueID'      : 'tip-queue', //提示信息放置目标 
+	  	    'fileType'     : 'image/*',   //允许上传文件类型
+	  	    'height'	   : 30, 
+	  	    'width'        : 160,
+	  	    'multi'        : false,
+	  	    'removeCompleted' : true,
+	  	    /* 'onComplete': function(event, queueID, fileObj, response, data) { */
+	  	    'onUploadComplete': function(file, data) {
+	  	    	/* console.log(file);
+	  	    	console.log(data); */
+	  	    	var $filePathObj = jQuery.parseJSON(data);
+	  	    	var $filePath = $filePathObj.filePath;
+                $("#pinPreviewImg").attr("src",$filePath);
+                $("#pinPreviewImg").css("display","block"); 
+                $("#file_upload").hide();   
+                $("#uploadifive-file_upload").css("visibility", "false"); 
+                $("#picnum").val($filePathObj.picnum);            
+	         }
+  	    });
+  	    
+  	    $("#addPinPickBoardButton").click(getBoardListForAddPin()); 
+  	     	    
+	})
+	
+	function getBoardListForAddPin() {		
+		$.ajax({
+			type:"GET",
+			dataType:"json",
+			url:'queryBoardsByUsername.action',
+			success: function(data, textStatus) {
+				var $menuSelect = $('#selectBoard');
+				$.each(data.boardList, function() {
+					var $bid  = this.bid;
+					var $bname = this.bname;
+					var $element = $("<li class='item' id=" + $bid + "><a>" + $bname + "</a></li>"); 
+					//还没有跳转连接！
+					$menuSelect.append($element);
+					$element.bind("click", itemChoose); 
+				});
+			},
+		});
+	}
+	
+	function itemChoose() {
+		$("#selectSpan").innerHTML= this.innerHTML;
+		$("#bid").val(this.id);
+	}
+	
+	</script>
+	</div> <!-- end addPinPage -->
+  </body>
+</html>
